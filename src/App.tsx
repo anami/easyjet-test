@@ -11,24 +11,27 @@ function App() {
 
   return (
     <>
-      <h1>easyJet Holidays Engineer Test</h1>
-      
-      
-      <section id="spacer"></section>
+      <header>
+        <h1>easyJet Holidays Engineer Test</h1>
+      </header>
+      <main>
+        <section id="spacer"></section>
 
-      <div className="tabs">
-        <div role="tablist">
-          <button role="tab" id="fizzbuzz" aria-selected={testType === 'fizzbuzz' ?  'true' : 'false'} onClick={() => setTestType('fizzbuzz')}>FizzBuzz</button>
-          <button role="tab" id="knight" onClick={() => setTestType('knight')} aria-selected={testType === 'knight' ?  'true' : 'false'}>Knight Travel</button>
-          <button role="tab" id="craps" onClick={() => setTestType('craps')} aria-selected={testType === 'craps' ?  'true' : 'false'}>Craps</button>
+        <div className="tabs">
+          <div role="tablist">
+            <button role="tab" id="fizzbuzz" aria-selected={testType === 'fizzbuzz' ? 'true' : 'false'} onClick={() => setTestType('fizzbuzz')}>FizzBuzz</button>
+            <button role="tab" id="knight" onClick={() => setTestType('knight')} aria-selected={testType === 'knight' ? 'true' : 'false'}>Knight Travel</button>
+            <button role="tab" id="craps" onClick={() => setTestType('craps')} aria-selected={testType === 'craps' ? 'true' : 'false'}>Craps</button>
+          </div>
         </div>
-      </div>
 
 
-      {testType === 'fizzbuzz' && <FizzBuzz />}
-      {testType === 'knight' && <KnightTravel />}
-      {testType === 'craps' && <Craps />}
-      
+        {testType === 'fizzbuzz' && <FizzBuzz />}
+        {testType === 'knight' && <KnightTravel />}
+        {testType === 'craps' && <Craps />}
+      </main>
+
+
     </>
   )
 }
