@@ -2,21 +2,35 @@
   font-family: Inter, system-ui, sans-serif;
   line-height: 1.5;
   --main-color: #fe8c00;
+  --text-color: #1f2937;
+  --main-bg-color: #f6f7fb;
+  --disabled-button: #ccc;
 }
 
 body {
   margin: 0;
-  background: #f6f7fb;
-  color: #1f2937;
+  background: var(--main-bg-color);
+  color: var(--text-color);
 }
 
 main {
-  max-width: 920px;
   margin: 0 auto;
-  padding: 16px;
+  padding: 12px;
 }
 
 header {
    color: var(--main-color);
    padding: 0 12px;
+}
+
+button {
+  background-color: var(--main-color);
+  padding: 4px 8px;
+  color: white;
+  margin: 0 8px;
+  border-radius: 8px;
+
+  &:disabled {
+    background-color: var(--disabled-button);
+  }
 }

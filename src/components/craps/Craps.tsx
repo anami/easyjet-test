@@ -107,7 +107,7 @@ export function Craps() {
     return (
         <>
             <h1>Craps</h1>
-            <div style={{ marginTop: '30px', marginBottom: '20px', paddingTop: '20px' }}>
+            <div>
                 <h2>Simulation</h2>
                 <div>
                     <label htmlFor="num-games">Number of games to simulate: </label>
