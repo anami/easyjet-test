@@ -14,10 +14,11 @@ export function Craps() {
     const [playing, setPlaying] = useState<boolean>(false)
     const [gamesWon, setGamesWon] = useState<number>(0)
     const [gamesLost, setGamesLost] = useState<number>(0)
+    const [point, setPoint] = useState<number | null>(null)
 
 
     function handleRoll() {
-        // randomly generate two numbers 
+        // randomly generate two numbers
         const val1 = Math.floor(Math.random() * 6) + 1
         const val2 = Math.floor(Math.random() * 6) + 1
 
@@ -25,26 +26,44 @@ export function Craps() {
         const winningTotals = [7, 11]
         const continueTotals = [4, 5, 6, 8, 9, 10]
 
-
         const total = val1 + val2
 
-        // check if the player lost - if the values add up to 2, 3 and 12
-        if (losingTotals.includes(total)) {
-            // game is lost
-            setPlaying(false)
-            setGamesPlayed(prev => prev + 1)
-            setGamesLost(prev => prev + 1)
-        } else if (winningTotals.includes(total)) {
-            setGamesWon(prev => prev + 1)
-            setGamesPlayed(prev => prev + 1)
-            setPlaying(false)
+        setDiceValues([val1, val2])
+
+        // If no point is set, this is the first roll
+        if (point === null) {
+            // check if the player lost - if the values add up to 2, 3 and 12
+            if (losingTotals.includes(total)) {
+                // game is lost
+                setPlaying(false)
+                setGamesPlayed(prev => prev + 1)
+                setGamesLost(prev => prev + 1)
+            } else if (winningTotals.includes(total)) {
+                setGamesWon(prev => prev + 1)
+                setGamesPlayed(prev => prev + 1)
+                setPlaying(false)
+            } else if (continueTotals.includes(total)) {
+                // Set the point and continue playing
+                setPoint(total)
+                setPlaying(true)
+            }
+        } else {
+            // Point is set, check if we match the point or roll a 7
+            if (total === point) {
+                // Matched the point, win!
+                setGamesWon(prev => prev + 1)
+                setGamesPlayed(prev => prev + 1)
+                setPlaying(false)
+                setPoint(null)
+            } else if (total === 7) {
+                // Rolled a 7, lose
+                setGamesLost(prev => prev + 1)
+                setGamesPlayed(prev => prev + 1)
+                setPlaying(false)
+                setPoint(null)
+            }
+            // Otherwise continue rolling
         }
-
-
-        setDiceValues(
-            [val1, val2]
-        )
-
     }
 
     return (
@@ -69,7 +88,7 @@ export function Craps() {
             <div>
                 <h2>Stats</h2>
                 <p>
-                    Game in progress: {playing}
+                    Point set: {point ?? 'NONE'}
                 </p>
                 <p>
                     Games played: {gamesPlayed}
