@@ -18,9 +18,19 @@ main {
   padding: 12px;
 }
 
-header {
+header, footer {
    color: var(--main-color);
    padding: 0 12px;
+}
+
+footer {
+  padding: 12px;
+  border-top: solid 2px #ccc;
+  background-color: white;
+}
+
+footer a, footer a:visited {
+  color: var(--main-color);
 }
 
 button {

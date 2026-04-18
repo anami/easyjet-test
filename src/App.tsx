@@ -30,6 +30,9 @@ function App() {
         {testType === 'knight' && <KnightTravel />}
         {testType === 'craps' && <Craps />}
       </main>
+      <footer>
+        <a href="https://github.com/anami/easyjet-test">Github</a>
+      </footer>
 
 
     </>
